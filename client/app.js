@@ -1,4 +1,4 @@
-angular.module('homework', ['ui.router', 'homework.assignmentList'])
+angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.detail', 'homework.submission'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
@@ -15,12 +15,56 @@ angular.module('homework', ['ui.router', 'homework.assignmentList'])
               controller: 'mainController'
             }
           }
+    })
+    .state('detail', {
+      url: '/detail/:id', 
+      views: {
+        detail: {
+          templateUrl: './views/detailView.html', 
+          controller: 'detailController'
+        },
+        submission: {
+          templateUrl: './views/submissionView.html',
+          controller: 'submissionController'
+        }
+      }, 
+      resolve:{
+      id: ['$stateParams', function($stateParams){
+          return $stateParams.Id;
+      }]
+   }
     });
 })
 
-.controller("mainController", ['$scope', '$http', function($scope, $http) {
+.controller("mainController", ['$scope', '$http','$rootScope', '$state', '$stateParams',function($scope, $http, $rootScope, $state, $stateParams) {
   $scope.test='mainController';
-  
+  $rootScope.assignmentList = {};
+
+  $scope.getURL = function() {
+    $http.get('https://api.edmodo.com/assignments?access_token=12e7eaf1625004b7341b6d681fa3a7c1c551b5300cf7f7f3a02010e99c84695d').
+      success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+          $rootScope.assignmentList[data[i].title] = data[i];
+        }
+        //console.log($scope.assignmentList);
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log('error getting data');
+      });
+  };
+  //$scope.getURL();
+
+  $scope.goToDetail = function(assignment) {
+    console.log(assignment);
+    $stateParams.id= assignment.id;
+    console.log($stateParams.id);
+    $state.go('detail', {id:assignment.id});
+  }
 
 }]);
 

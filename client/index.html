@@ -5,13 +5,23 @@
     <meta charset="utf-8" />
   </head>
 
-  <body >
-  <div ui-view="main_content" ng-controller="mainController" >{{test}}</div>
+  <body ng-controller="mainController" ng-init="getURL()">
+  <div>
+    <div ng-repeat = "assignment in assignmentList">
+      <div ng-click = "goToDetail(assignment)">{{assignment.title}}</div>
+      <div>Due Date: {{assignment.due_at}} </div>
+    </div>
+  </div>
 
   <div ui-view="assignmentList"></div>
+  <div ui-view="detail"></div>
+  <div ui-view="submission"></div>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="controllers/detailController.js"></script>
+    <script src="controllers/submissionController.js"></script>
     <script src="controllers/assignmentListController.js"></script>
+
     <script src="app.js"></script>
   </body>
 

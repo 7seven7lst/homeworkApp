@@ -1,0 +1,10 @@
+<div ng-init="getSubmission()"> <p ng-click="selectVisible()">Toggle1</p> <p ng-click="selectVisible2()"> Toggle2</p>
+<div ng-show="showI" ng-repeat = "submission in submissionList">
+  <div>{{submission}}</div>
+</div>
+
+<div ng-show="show2" ng-repeat = "submission in submissionList">
+  <div>hahah</div>
+  <div>: {{submission.creator.first_name}} </div>
+</div>
+</div>

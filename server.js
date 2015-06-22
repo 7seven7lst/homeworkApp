@@ -10,14 +10,18 @@ app.use('/', express.static(__dirname + '/client'));
 //parses all incoming data from strings to JSON
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-  console.log('here');
-  http.get(options, callback);
-  res.sendFile(path.join(__dirname,'/client', 'main.html'));
+app.use(express.static(__dirname + '/client'));
 
+app.get('/home', function (req, res) {
+  res.end('home');
+});
+
+
+app.get('/detail', function (req, res) {
+  res.end('detail');
 });
 app.get('*/', function(req, res) {
-  res.redirect('/');
+  res.redirect('/home');
 })
 
 app.listen(port, function() {
