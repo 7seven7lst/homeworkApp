@@ -6,11 +6,12 @@
   </head>
 
   <body >
-  <div ui-view="main_content" ng-controller="mainController">{{test}}</div>
-  <div ui-view="nav" ></div>
+  <div ui-view="main_content" ng-controller="mainController" >{{test}}</div>
+
+  <div ui-view="assignmentList"></div>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="controllers/t1Controller.js"></script>
+    <script src="controllers/assignmentListController.js"></script>
     <script src="app.js"></script>
   </body>
 

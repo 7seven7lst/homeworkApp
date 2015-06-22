@@ -1,4 +1,4 @@
-angular.module('homework', ['ui.router', 'homework.t1'])
+angular.module('homework', ['ui.router', 'homework.assignmentList'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
@@ -7,9 +7,9 @@ angular.module('homework', ['ui.router', 'homework.t1'])
     .state('home', {
       url: '/home',
       views: {
-            nav: {
-               templateUrl: './views/t1View.html',
-               controller: 't1Controller'
+            assignmentList: {
+               templateUrl: './views/assignmentListView.html',
+               controller: 'assignmentListController'
             },
             main_content: {
               controller: 'mainController'
@@ -18,7 +18,9 @@ angular.module('homework', ['ui.router', 'homework.t1'])
     });
 })
 
-.controller("mainController", ['$scope', function($scope) {
+.controller("mainController", ['$scope', '$http', function($scope, $http) {
   $scope.test='mainController';
+  
+
 }]);
 

@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var http = require('http');
 var app = express();
 var port =  3006;
 
@@ -9,11 +10,14 @@ app.use('/', express.static(__dirname + '/client'));
 //parses all incoming data from strings to JSON
 app.use(bodyParser.json());
 
-app.get('/home', function (req, res) {
+app.get('/', function (req, res) {
+  console.log('here');
+  http.get(options, callback);
   res.sendFile(path.join(__dirname,'/client', 'main.html'));
+
 });
 app.get('*/', function(req, res) {
-  res.redirect('/home');
+  res.redirect('/');
 })
 
 app.listen(port, function() {
