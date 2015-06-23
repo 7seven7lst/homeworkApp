@@ -3,22 +3,30 @@
 <html ng-app="homework">
   <head>
     <meta charset="utf-8" />
+    <title> Homework</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
   </head>
 
   <body ng-controller="mainController" ng-init="getURL()">
-  <div>
-    <div ng-repeat = "assignment in assignmentList">
-      <div ng-click = "goToDetail(assignment)">{{assignment.title}}</div>
-      <div>Due Date: {{assignment.due_at}} </div>
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <h3 style="vertical-align: middle;text-align: center; font: 200%; font-weight: bold">Assignment</h3>
+    <div ng-repeat = "assignment in assignmentList" class="row top10Style">
+      <div ng-class="{'test': assignment.selected === true}" ng-click = "goToDetail(assignment)">
+        <div >{{assignment.title}}</div>
+        <div><b>Due Date:</b> {{assignment.due_at}} </div>
+      </div>
     </div>
   </div>
+  <button ng-click="addAssignment()"> Add Assignment</button>
 
-  <div ui-view="assignmentList"></div>
+
   <div ui-view="detail"></div>
-  <div ui-view="submission"></div>
+  <div ui-view="addAssignment"></div>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="controllers/detailController.js"></script>
+    <script src="controllers/addController.js"></script>
     <script src="controllers/submissionController.js"></script>
     <script src="controllers/assignmentListController.js"></script>
 
