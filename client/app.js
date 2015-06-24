@@ -77,6 +77,13 @@ angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.de
     $stateParams.id= assignment.id;
     console.log($stateParams.id);
     assignment.selected = true;
+    for (var key in $rootScope.assignmentList) {
+      console.log('hahaha', key);
+      if (key != assignment.id) {
+        console.log('here');
+        $rootScope.assignmentList[key].selected = false;
+      }
+    }
     $state.go('detail', {id:assignment.id});
   }
 

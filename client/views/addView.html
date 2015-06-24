@@ -1,4 +1,32 @@
 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<form novalidate name="addForm" class="form-block" role="form" style="margin-top: 5%; vertical-align: middle; margin-left:30%; margin-right:auto">
 
-<button ng-click="returnMain()"> Return</button>
+      <div class="form-group">
+        <input maxLength="50"  type="text" placeholder="Title*" name="title" ng-model="newEvent.title" ng-required="true">
+      </div>
+
+      <div class="form-group">
+        <textarea maxlength="1000"  name="description" ng-model="newEvent.description" ng-ng-required="true" placeholder="Description*"></textarea>
+      </div>
+
+      <div class="form-group">
+        <input maxlength="200"  type="text" placeholder="Recipients" ng-model="newEvent.recipients"/>
+      </div>
+
+  
+
+      <!-- conditional validation: http://stackoverflow.com/questions/13466133/how-can-i-conditionally-require-form-inputs-with-angularjs -->
+      <label for="dateInfo" class="addEventFieldTitle">Date & Time</label>
+      <div class="form-group">
+        <input  type="date" id="add-event-date" name="input" ng-model="newEvent.due_at"/>
+      </div>
+
+      
+
+      <div class="form-group">
+        <input type="button" ng-disabled="addForm.$invalid" class="btn btn-primary" ng-click="returnMain()" value="Submit">
+      </div>
+
+    </form>
+
 </div>

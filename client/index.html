@@ -6,19 +6,21 @@
     <title> Homework</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/tabStyle.css">
   </head>
 
-  <body ng-controller="mainController" ng-init="getURL()">
-  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+  <body ng-controller="mainController" ng-init="getURL()" >
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="haha">
     <h3 style="vertical-align: middle;text-align: center; font: 200%; font-weight: bold">Assignment</h3>
-    <div ng-repeat = "assignment in assignmentList" class="row top10Style">
-      <div ng-class="{'test': assignment.selected === true}" ng-click = "goToDetail(assignment)">
+    <div ng-class="{'test': assignment.selected === true}" ng-repeat = "assignment in assignmentList" class="row top10Style">
+      <div ng-click = "goToDetail(assignment)">
         <div >{{assignment.title}}</div>
         <div><b>Due Date:</b> {{assignment.due_at}} </div>
       </div>
     </div>
+  <button style="vertical-align: middle;text-align:center; margin-left:30%;" class="row top10Style" ng-click="addAssignment()"> Add Assignment</button>
   </div>
-  <button ng-click="addAssignment()"> Add Assignment</button>
+  
 
 
   <div ui-view="detail"></div>
