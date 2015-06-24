@@ -63,7 +63,7 @@ angular.module('homework', ['ui.router', 'homework.detail','homework.addAssignme
 
   // go to Assignment and Submission details view
   $scope.goToDetail = function(assignment) {
-    $stateParams.id= assignment.id;
+    $stateParams.id = assignment.id;
     assignment.selected = true;
     for (var key in $rootScope.assignmentList) {
       if (key != assignment.id) {
