@@ -33,3 +33,6 @@ Angular, Node/Express
   ```sh
   http://localhost:3006/#/detail/THE_ASSIGNMENT_NUMBER
   ```
+## Screen Shot
+![Image of Assignment and Submission Page]
+(http://gdurl.com/7lFa)
