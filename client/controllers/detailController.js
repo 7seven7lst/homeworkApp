@@ -1,5 +1,5 @@
 angular.module('homework.detail', [])
-.controller('detailController', ['$scope', '$http', '$rootScope', '$stateParams',function($scope, $http, $rootScope, $stateParams) {
+.controller('detailController', ['$scope', '$http', '$rootScope', '$stateParams','UtilService', function($scope, $http, $rootScope, $stateParams, UtilService) {
   // initial parameters
   var url = 'https://api.edmodo.com/assignment_submissions?assignment_id=' + $stateParams.id + '&assignment_creator_id=73240721&access_token=12e7eaf1625004b7341b6d681fa3a7c1c551b5300cf7f7f3a02010e99c84695d'
   $scope.submissionList = {};
@@ -40,8 +40,8 @@ angular.module('homework.detail', [])
   };
 
   // fetch API to get assignment
-  $scope.getURL = function(id) {
-    $http.get('https://api.edmodo.com/assignments?access_token=12e7eaf1625004b7341b6d681fa3a7c1c551b5300cf7f7f3a02010e99c84695d').
+  $scope.getQuestions = function(id) {
+      UtilService.getURL().
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available
@@ -63,11 +63,11 @@ angular.module('homework.detail', [])
 
   // initialization function to fetch the questions and student submissions
   $scope.init = function() {
-    $scope.getURL($scope.id);
+    $scope.getQuestions($scope.id);
     $scope.getSubmission();
   };
 
   $scope.transformDate = function(assignmentDate) {
-    return new Date(assignmentDate).toLocaleString();
+    return UtilService.transformDate(assignmentDate);
   }
 }]);

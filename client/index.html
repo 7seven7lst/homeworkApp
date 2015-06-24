@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/tabStyle.css">
   </head>
 
-  <body style="background-color:#FFFFCC" ng-controller="mainController" ng-init="getURL()" >
+  <body ng-controller="mainController" ng-init="fetchAssignmentIfNotLoaded()" >
 
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <h3 class="title">Assignment</h3>
@@ -16,7 +16,7 @@
 
         <div ng-click = "goToDetail(assignment)">
           <div><b>{{assignment.title}}</b></div>
-          <div><b>due: </b> {{transformDate(assignment)}}</div>
+          <div><b>due: </b> {{transformDate(assignment.due_at)}}</div>
         </div>
 
       </div>
@@ -33,6 +33,7 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="controllers/detailController.js"></script>
     <script src="controllers/addController.js"></script>
+    <script src="services/utilService.js"></script>
     <script src="app.js"></script>
 
   </body>

@@ -1,4 +1,4 @@
-angular.module('homework', ['ui.router', 'homework.detail','homework.addAssignment'])
+angular.module('homework', ['ui.router', 'homework.detail','homework.addAssignment', 'homeowrk.utilservice'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
@@ -37,13 +37,12 @@ angular.module('homework', ['ui.router', 'homework.detail','homework.addAssignme
     });
 })
 
-.controller("mainController", ['$scope', '$http','$rootScope', '$state', '$stateParams',function($scope, $http, $rootScope, $state, $stateParams) {
-  $scope.test='mainController';
+.controller("mainController", ['$scope', '$http','$rootScope', '$state', '$stateParams', 'UtilService', function($scope, $http, $rootScope, $state, $stateParams, UtilService) {
   $rootScope.assignmentList = {};
 
-  $scope.getURL = function() {
+  $scope.fetchAssignmentIfNotLoaded = function() {
     if (Object.keys($rootScope.assignmentList).length === 0  ) {
-      $http.get('https://api.edmodo.com/assignments?access_token=12e7eaf1625004b7341b6d681fa3a7c1c551b5300cf7f7f3a02010e99c84695d').
+        UtilService.getURL().
         success(function(data, status, headers, config) {
           // this callback will be called asynchronously
           // when the response is available
@@ -79,8 +78,8 @@ angular.module('homework', ['ui.router', 'homework.detail','homework.addAssignme
     $state.go('add');
   };
 
-  $scope.transformDate = function(assignment) {
-    return new Date(assignment.due_at).toLocaleString();
+  $scope.transformDate = function(assignmentDate) {
+    return UtilService.transformDate(assignmentDate);
   }
 }]);
 

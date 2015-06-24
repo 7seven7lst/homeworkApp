@@ -18,7 +18,7 @@
 
         <div ng-show="showSubmission" ng-repeat = "submission in submissionList">
           <div class="row list" ng-click="toggleStudentSubmission(submission)">
-            <img ng-src="{{submission.creator.avatars.large}}" />
+            <img ng-src="{{submission.creator.avatars.small}}" />
             <div>
           {{submission.creator.first_name}} {{submission.creator.last_name}}
             </div>

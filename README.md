@@ -13,7 +13,7 @@ Angular, Node/Express
 
 1. Perequisite:
   ```sh
-  Please make sure you have 
+  Please make sure you have node, bower, and npm installed
   ```
 
 2. Run the following in the project directory:
@@ -28,7 +28,8 @@ Angular, Node/Express
     ```
 
 3. Open http://localhost:3006 in your browser.
-4. If you want to reload the page with selected assignment, Please enter the below format url:
+4. If you want to reload the page with selected assignment, Please enter the below format url
+
   ```sh
   http://localhost:3006/#/detail/THE_ASSIGNMENT_NUMBER
   ```
