@@ -1,4 +1,4 @@
-angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.detail', 'homework.submission','homework.addAssignment'])
+angular.module('homework', ['ui.router', 'homework.detail','homework.addAssignment'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
@@ -7,10 +7,6 @@ angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.de
     .state('home', {
       url: '/home',
       views: {
-            assignmentList: {
-               templateUrl: './views/assignmentListView.html',
-               controller: 'assignmentListController'
-            },
             main_content: {
               controller: 'mainController'
             }
@@ -31,10 +27,6 @@ angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.de
         detail: {
           templateUrl: './views/detailView.html', 
           controller: 'detailController'
-        },
-        submission: {
-          templateUrl: './views/submissionView.html',
-          controller: 'submissionController'
         }
       }, 
       resolve:{
@@ -55,7 +47,6 @@ angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.de
         success(function(data, status, headers, config) {
           // this callback will be called asynchronously
           // when the response is available
-          console.log(data);
           for (var i = 0; i < data.length; i++) {
             $rootScope.assignmentList[data[i].id] = data[i];
             $rootScope.assignmentList[data[i].id].selected = false;
@@ -70,27 +61,27 @@ angular.module('homework', ['ui.router', 'homework.assignmentList', 'homework.de
     }
    
   };
-  //$scope.getURL();
 
+  // go to Assignment and Submission details view
   $scope.goToDetail = function(assignment) {
-    console.log(assignment);
     $stateParams.id= assignment.id;
-    console.log($stateParams.id);
     assignment.selected = true;
     for (var key in $rootScope.assignmentList) {
-      console.log('hahaha', key);
       if (key != assignment.id) {
-        console.log('here');
         $rootScope.assignmentList[key].selected = false;
       }
     }
     $state.go('detail', {id:assignment.id});
-  }
+  };
 
+  // got to addAssginment View
   $scope.addAssignment = function() {
     $state.go('add');
+  };
+
+  $scope.transformDate = function(assignment) {
+    return new Date(assignment.due_at).toLocaleString();
   }
-
-
 }]);
+
 

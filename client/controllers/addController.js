@@ -1,12 +1,17 @@
 angular.module('homework.addAssignment', [])
 .controller('addController', ['$scope', '$http', '$rootScope', '$stateParams', '$state',function($scope, $http, $rootScope, $stateParams, $state) {
-  $scope.newEvent ={};
+  $scope.newEvent = {};
+
+  // add new event and return to main view
   $scope.returnMain = function() {
-    console.log('here in addController ', $rootScope.assignmentList);
-    $scope.newEvent.id=1234;
-    $rootScope.assignmentList[1234]= $scope.newEvent;
+    $scope.newEvent.due_at = new Date($scope.newEvent.due_at);
+    var myID = 1;
+    while ($rootScope.assignmentList[myID] !== undefined && myID < 100000000) {
+      myID++;
+    }
+
+    $scope.newEvent.id = myID;
+    $rootScope.assignmentList[$scope.newEvent.id] = $scope.newEvent;
     $state.go('home');
-  }
-
-
+  };
 }]);

@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-
 <html ng-app="homework">
   <head>
-    <meta charset="utf-8" />
-    <title> Homework</title>
+    <meta charset="utf-8"/>
+    <title>Homework</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/tabStyle.css">
   </head>
 
-  <body ng-controller="mainController" ng-init="getURL()" >
-  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="haha">
-    <h3 style="vertical-align: middle;text-align: center; font: 200%; font-weight: bold">Assignment</h3>
-    <div ng-class="{'test': assignment.selected === true}" ng-repeat = "assignment in assignmentList" class="row top10Style">
-      <div ng-click = "goToDetail(assignment)">
-        <div >{{assignment.title}}</div>
-        <div><b>Due Date:</b> {{assignment.due_at}} </div>
+  <body style="background-color:#FFFFCC" ng-controller="mainController" ng-init="getURL()" >
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <h3 class="title">Assignment</h3>
+      <div ng-class="{'selectedQuestion': assignment.selected === true}" ng-repeat = "assignment in assignmentList" class="row list">
+
+        <div ng-click = "goToDetail(assignment)">
+          <div><b>{{assignment.title}}</b></div>
+          <div><b>due: </b> {{transformDate(assignment)}}</div>
+        </div>
+
       </div>
+
+      <button class="row list btnStyle" ng-click="addAssignment()"> Add Assignment</button>
     </div>
-  <button style="vertical-align: middle;text-align:center; margin-left:30%;" class="row top10Style" ng-click="addAssignment()"> Add Assignment</button>
-  </div>
-  
 
+    <!-- detailsView goes here -->
+    <div ui-view="detail"></div>
+    <!-- addAssignmentView goes here -->
+    <div ui-view="addAssignment"></div>
 
-  <div ui-view="detail"></div>
-  <div ui-view="addAssignment"></div>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="controllers/detailController.js"></script>
     <script src="controllers/addController.js"></script>
-    <script src="controllers/submissionController.js"></script>
-    <script src="controllers/assignmentListController.js"></script>
-
     <script src="app.js"></script>
+
   </body>
-
-
-
-
 
 </html>

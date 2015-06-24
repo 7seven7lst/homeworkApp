@@ -1,6 +1,13 @@
+h3.title {
+  vertical-align: middle;
+  text-align: center; 
+  font: 200%; 
+  font-weight: bold; 
+  margin-top: 10%; 
+  margin-bottom: 5%;
+}
 
-
-.top10Style {
+.list {
   vertical-align: middle;
   text-align: center;
   margin-left: 10%;
@@ -17,9 +24,35 @@
   position: relative;
 }
 
-
-
-.test {
-  background-color:red;
+button.btnStyle {
+  vertical-align: middle;
+  text-align:center; 
+  margin-left:30%; 
+  margin-top: 5%;
 }
 
+.selectedQuestion {
+  background-color:#9999FF;
+}
+
+div.adjustTop {
+  margin-top: 5%;
+}
+
+main.mainStyle {
+  width:80%; 
+  margin-left: 10%;
+}
+
+form.addFormStyle {
+  margin-top: 5%; 
+  vertical-align: middle; 
+  margin-left:30%; 
+}
+
+b.assignmentTitle {
+  font-size: 200%;
+}
+div.assignmentBody {
+  margin-left: 5%;
+}

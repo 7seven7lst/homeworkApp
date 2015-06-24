@@ -1,40 +1,38 @@
 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 
-<div class="row top10Style" style="margin-top: 5%">
+  <div class="row list adjustTop">
 
-  <div ng-init="init()" class="w3c"> 
-  <!--
-  <table>
-  <tr>
-  <td ng-click="selectVisible()" >Assignment</td> 
-  <td ng-click="selectVisible2()">Submission</td>
-  </tr>
-  </table>
-    <div ng-show="showI">
-      <div><b>{{assignmentList[id].title}}</b>  Due Date: {{assignmentList[id].due_at}}</div>
-      <div>{{assignmentList[id].description}}</div>
+    <div ng-init="init()"> 
+    
+      <nav class="left">
+      <label ng-class="{'selected': showAssignment===true }" ng-click="selectAssignment()">Assignment</label>
+      <label ng-class="{'selected': showSubmission===true }"ng-click="selectSubmission()">Submissions</label>
+      </nav>
+
+      <main class="mainStyle">
+
+        <div ng-show="showAssignment">
+          <div><b class="assignmentTitle">{{assignmentList[id].title}}</b>  Due Date: {{transformDate(assignmentList[id].due_at)}}</div>
+          <div class="assignmentBody">{{assignmentList[id].description}}</div>
+        </div>
+
+        <div ng-show="showSubmission" ng-repeat = "submission in submissionList">
+          <div class="row list" ng-click="toggleStudentSubmission(submission)">
+            <img ng-src="{{submission.creator.avatars.large}}" />
+            <div>
+          {{submission.creator.first_name}} {{submission.creator.last_name}}
+            </div>
+            <div>
+            turned in {{transformDate(submission.submitted_at)}}
+            </div>
+          </div>
+          <div ng-if="submission.show">{{submission.content}} </div>
+        </div>
+
+      </main>
+
     </div>
 
-    <div ng-show="show2" ng-repeat = "submission in submissionList">
-      <div class="row top10Style" ng-click="toggleStudentSubmission(submission)">: {{submission.creator.first_name}} </div>
-      <div ng-show="submission.show">{{submission.content}} </div>
-    </div>
-  -->
-  <nav class="left">
-  <label ng-class="{'selected': showI===true }" ng-click="selectVisible()">Assignment</label>
-  <label ng-class="{'selected': show2===true }"ng-click="selectVisible2()">Submissions</label>
-  </nav>
-  <main style="width:80%; margin-left: 10%">
-    <div ng-show="showI">
-      <div><b>{{assignmentList[id].title}}</b>  Due Date: {{assignmentList[id].due_at}}</div>
-      <div>{{assignmentList[id].description}}</div>
-    </div>
-
-    <div ng-show="show2" ng-repeat = "submission in submissionList">
-      <div class="row top10Style" ng-click="toggleStudentSubmission(submission)">: {{submission.creator.first_name}} </div>
-      <div ng-show="submission.show">{{submission.content}} </div>
-    </div>
-  </main>
   </div>
-</div>
+
 </div>
